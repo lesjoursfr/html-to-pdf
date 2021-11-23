@@ -40,10 +40,8 @@ function spawnAndWait (url: string, output: string) : Promise<void> {
       error = err;
     });
 
-    child.on('close', function (code, signal) {
-      (error || (code !== 0))
-        ? reject(error ?? new Error(`Non 0 exit code : ${code} (signal : ${signal})`))
-        : resolve();
+    child.on('close', function () {
+      error ? reject(error) : resolve();
     });
   });
 }
