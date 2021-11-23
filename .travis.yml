@@ -1,0 +1,34 @@
+version: "~> 1.0"
+language: node_js
+os: linux
+dist: focal
+if: branch = "stable" OR tag IS present
+jobs:
+  include:
+  - stage: Test the project
+    name: Test the project on Linux with NodeJS 14
+    os: linux
+    dist: focal
+    node_js: '14'
+    script: npm run build
+    script: npm run test
+  - stage: Release to NPM
+    name: Publish the package to the npmjs repository
+    os: linux
+    dist: focal
+    node_js: '14'
+    script: npm run build
+    deploy:
+      edge: true
+      provider: npm
+      email: npmjs@eraud.dev
+      api_token:
+        secure: TEbVeaZmZus6ufjK+7IPDy3bco7SX+5l4P0OW8KyKtqk2zoSiyvBTpUFyqWhggNzITAS7NACzWtpO2D6k6rydBdT2DxdgLIeApArNNGAaOPxvc4dcUEZyY2VJuHFXy3rbvOgleXCSJ3pqNWedET5ZiibfjOHM6np/bPAJjsu3rvEvSYr55poqIixtpR3gdaftxOzmd4RCI5DIqq+DNmKrqEGMC9zk241t0QRaiV/ZmSNGADaezAU2xnHotGaER+C7m6Cih0ioAm+zkn3VSLJrK8Ww40cukKnfRO0z0FcpQoAUsqVAplbjPYoNAE3TYfkZkKYatLnMJtzLbxqntcuK2KVgRq3O2jNYQcivsoYADN4jylh9qlRAXUAgj1KnKUhRysVg5/Cnbbgs4XuPJWiGSuVBwDIedth0tpz4oHX4chXIL3QxeCJ3aveATsgE0Zoi1xM11Q1A5CLQY4RWw30v8CzaySaV0YYQsIkoW4CGWUlEIEuzVx2e1EY/8TSPYZmuGmsPoUFQ3Wb8Sk8NxmeRqN/bfQoGaEEXOWa9PKxoV8NQDyNJCw/idaGYTItjFslnGgVrflF8QEMVoV3K0GrM1RnLa56nbYT8jNDCTq/EgGHqoUP3xUPeopYM+QyPyhD8erGNTfACwfm94OTHUGuJhVlxKxIOvt+hKaKyLX4piE=
+      on:
+        tags: true
+        repo: lesjoursfr/html-to-pdf
+        branch: stable
+      cleanup: false
+notifications:
+  slack:
+    secure: WZfOLQFv724W/H7gGj/PJt3AzSVVYbrQ4m4m1FG3gGhHnYHBgj2OCk3LRcWYrmTLWi5weNN2LdhYtrqFuIhCQ2Ht42QEpKQiAxBgX+nqY/BlURk7BSpzJs8oGC94B2mzhc89FhQmYpgctMgFYQdcdNlfcBnM6gACIUqPnEdWvKeESHHG17Ajwd3+WMM9K3Wq2uxjIZleigRYUqXULIxrxKhErx6KwhiXWqNj8cUZw8OVJlC5qrNi27v+5Efj+a+wSOndtkhCh1XmYXPsb3jgu5/VX2nFJu0DQC7cGByubpuCiZpdV0E0A5g4vmxNp1o+0iXTZus2JGC0PA2082WHitFnfDupSsXB9BA4oB8cmGqedtYhPN+IgyyZyS5OsczeBojw3+NeZNF0wfpipMCYsR0yL23Yewjbk1xv9SO46weFmU/jwx9KrLMFhtUFqxKGZHxjNX2sRQnc3CWbgp+iWFQbSkVB1NzEgMpr9IThqacQ3Ov1GAhb2o8G5IqbPxSx/A6d1OgGQiQNj5UcmIHXNMtksabZmpiYu6tv/+HJkRqzbHk6Gn9ZdgcOaN4XwBAqra1K4EBxD3pN0yUi/GKP6G32aODFE8RUrxXdHMApZoWYl2B7Bd573C1KCIErVdnIfnTYkfCrO9UIevVVmF0MAytntwvuyI315xfDSUI1kOA=
