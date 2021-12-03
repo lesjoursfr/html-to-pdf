@@ -4,7 +4,8 @@
 	],
 	"timezone": "Europe/Paris",
 	"schedule": [
-		"before 2am every monday"
+		"after 10am every monday",
+		"before 4pm every monday"
 	],
 	"rangeStrategy": "bump",
 	"packageRules": [
