@@ -11,8 +11,8 @@ function spawnAndWait (url: string, output: string) : Promise<void> {
 
     // Spawn the Electron Process
     const child = spawn(
-      require.resolve('electron/cli.js'),
-      ['--no-sandbox', script, '--target', url, '--output', output],
+      'node',
+      [require.resolve('electron/cli.js'), '--no-sandbox', script, '--target', url, '--output', output],
       { stdio: 'pipe' }
     );
 
