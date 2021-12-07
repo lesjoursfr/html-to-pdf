@@ -26,7 +26,13 @@ app.on('ready', function () {
     }
 
     // Write the PDF File to a Temporary File
-    writeFileSync(output, pdf);
+    try {
+      writeFileSync(output, pdf);
+    } catch (error) {
+      // Send the Error
+      process.stdout.write(JSON.stringify({ error: error.toString() }), 'utf8');
+      return;
+    }
 
     // Send a success
     process.stdout.write(JSON.stringify({ result: 'ok' }), 'utf8');

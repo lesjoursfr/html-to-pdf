@@ -1,50 +1,26 @@
-import { spawn } from 'child_process';
+import { exec } from 'child_process';
 import { resolve } from 'path';
 import { URL } from 'url';
+import { promisify } from 'util';
 
-function spawnAndWait (url: string, output: string) : Promise<void> {
-  const script = resolve(__dirname, './electron.js');
+const execp = promisify(exec);
+const script = resolve(__dirname, './electron.js');
 
-  return new Promise((resolve, reject) => {
-    // Error & Data
-    let error : any;
-
-    // Spawn the Electron Process
-    const child = spawn(
-      'node',
-      [require.resolve('electron/cli.js'), '--no-sandbox', script, '--target', url, '--output', output],
-      { stdio: 'pipe' }
-    );
-
-    // Pass stdout response to the parent process
-    child.stdout.on('data', function (data) {
-      // Check the data type
-      if (Buffer.isBuffer(data)) { data = data.toString('utf8'); }
-
-      // Skip non JSON messages
-      let message;
-      try {
-        message = JSON.parse(data);
-      } catch (err) {
-        return;
-      }
-
-      // Check if it's an error
-      if (message.error) {
-        error = new Error(error);
-      }
-    });
-
-    // Send Child Errors to the parent process
-    child.on('error', function (err: Error) {
-      error = err;
-    });
-
-    child.on('close', function () {
-      error ? reject(error) : resolve();
-    });
-  });
+interface OperationResult {
+  error: string | undefined;
+  result: 'ok' | undefined;
 }
+
+function cleanOutput (std: string) : OperationResult | null {
+  // We look for a line that contains a valid JSON string
+  let result = null;
+  for (const line of std.split('\n')) {
+    try {
+      result = JSON.parse(line);
+    } catch (err) { /* Nothing to do */ }
+  }
+  return result;
+};
 
 export class PDF {
   url: URL;
@@ -56,8 +32,21 @@ export class PDF {
     this.output = output;
   }
 
-  async render () : Promise<void> {
+  async render () : Promise<any> {
     // Render the PDF
-    return spawnAndWait(this.url.toString(), this.output);
+    const command = `node ${require.resolve('electron/cli.js')} --no-sandbox ${script} --target ${this.url.toString()} --output ${this.output}`;
+    const { stdout } = await execp(command);
+
+    // Clean output
+    const opResult = cleanOutput(stdout);
+    if (opResult === null) {
+      throw new Error(`Wrong operation result [command : ${command}]`);
+    }
+
+    // Check the result
+    if (opResult.error) {
+      throw new Error(opResult.error);
+    }
+    return opResult;
   }
 }

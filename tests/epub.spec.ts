@@ -9,8 +9,8 @@ async function runTestOn (input: string) : Promise<boolean> {
   const output = resolve(__dirname, `./${input}.pdf`);
 
   const pdf = new PDF(target, output);
-  await pdf.render();
-  return true;
+  const op = await pdf.render();
+  return op.result === 'ok';
 }
 
 test.serial('PDF > generate', async (t) => {
