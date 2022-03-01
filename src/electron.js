@@ -17,11 +17,11 @@ app.on('ready', function () {
     // Check if there is an Error
     if (err) {
       // Send the Error
-      process.stdout.write(JSON.stringify({ error: err.toString() }), 'utf8');
+      process.stdout.write(`${JSON.stringify({ error: err.toString() })}\n`, 'utf8');
       return;
     } else if (pdf === undefined) {
       // Send the Error
-      process.stdout.write(JSON.stringify({ error: (new Error('Missing PDF buffer')).toString() }), 'utf8');
+      process.stdout.write(`${JSON.stringify({ error: (new Error('Missing PDF buffer')).toString() })}\n`, 'utf8');
       return;
     }
 
@@ -30,12 +30,12 @@ app.on('ready', function () {
       writeFileSync(output, pdf);
     } catch (error) {
       // Send the Error
-      process.stdout.write(JSON.stringify({ error: error.toString() }), 'utf8');
+      process.stdout.write(`${JSON.stringify({ error: error.toString() })}\n`, 'utf8');
       return;
     }
 
     // Send a success
-    process.stdout.write(JSON.stringify({ result: 'ok' }), 'utf8');
+    process.stdout.write(`${JSON.stringify({ result: 'ok' })}\n`, 'utf8');
   }
 
   // Load the HTML File into Electron
