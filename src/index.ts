@@ -11,7 +11,7 @@ interface OperationResult {
   result: 'ok' | undefined;
 }
 
-function cleanOutput (std: string) : OperationResult | null {
+function cleanOutput (std: string): OperationResult | null {
   // We look for a line that contains a valid JSON string
   let result = null;
   for (const line of std.split('\n')) {
@@ -20,7 +20,7 @@ function cleanOutput (std: string) : OperationResult | null {
     } catch (err) { /* Nothing to do */ }
   }
   return result;
-};
+}
 
 export class PDF {
   url: URL;
@@ -32,7 +32,7 @@ export class PDF {
     this.output = output;
   }
 
-  async render () : Promise<any> {
+  async render (): Promise<OperationResult> {
     // Render the PDF
     const command = `node ${require.resolve('electron/cli.js')} --no-sandbox ${script} --target ${this.url.toString()} --output ${this.output}`;
     const { stdout } = await execp(command);
