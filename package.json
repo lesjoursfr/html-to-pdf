@@ -32,7 +32,7 @@
 		"test": "ava"
 	},
 	"dependencies": {
-		"electron": "^17.3.1",
+		"electron": "^18.0.1",
 		"yargs": "^17.4.0"
 	},
 	"devDependencies": {
