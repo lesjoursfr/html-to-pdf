@@ -1,18 +1,18 @@
-import test from 'ava';
-import { resolve } from 'path';
-import { URL } from 'url';
-import { PDF } from '../src/index';
+import test from "ava";
+import { resolve } from "path";
+import { URL } from "url";
+import { PDF } from "../src/index";
 
-async function runTestOn (input: string) : Promise<boolean> {
+async function runTestOn(input: string): Promise<boolean> {
   const file = resolve(__dirname, `./${input}.html`);
   const target = new URL(`file://${file}`);
   const output = resolve(__dirname, `./${input}.pdf`);
 
   const pdf = new PDF(target, output);
   const op = await pdf.render();
-  return op.result === 'ok';
+  return op.result === "ok";
 }
 
-test.serial('PDF > generate', async (t) => {
-  t.is(await runTestOn('article'), true);
+test.serial("PDF > generate", async (t) => {
+  t.is(await runTestOn("article"), true);
 });

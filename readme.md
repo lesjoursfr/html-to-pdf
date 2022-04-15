@@ -1,15 +1,13 @@
 [![npm version](https://badge.fury.io/js/@lesjoursfr%2Fhtml-to-pdf.svg)](https://badge.fury.io/js/@lesjoursfr%2Fhtml-to-pdf)
 [![Build Status](https://travis-ci.org/lesjoursfr/html-to-pdf.svg?branch=master)](https://travis-ci.org/lesjoursfr/html-to-pdf)
 
-html-to-pdf
-================
+# html-to-pdf
+
 Generate PDF from HTML with simple API in Node.js.
 
 # What is this library?
 
 This library use electron to generate PDF files from HTML.
-
-
 
 ## Usage
 
@@ -37,7 +35,7 @@ Then put this in your code:
 
 #### Parameters
 
-- `target`:
+-   `target`:
     The URL of the HTML page
-- `output`:
+-   `output`:
     The PDF file path

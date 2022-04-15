@@ -4,6 +4,9 @@ lib
 # Tests files
 tests/*.pdf
 
+# Electron JS file
+src/electron.js
+
 # Yarn & node.js dependencies
 package.json
 node_modules/
