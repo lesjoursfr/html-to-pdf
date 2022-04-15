@@ -33,7 +33,7 @@
 		"check-tsc": "tsc --noEmit",
 		"lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
 		"format": "prettier --write .",
-		"build": "tsc",
+		"build": "tsc && cp src/electron.js lib/electron.js",
 		"test": "ava"
 	},
 	"dependencies": {
