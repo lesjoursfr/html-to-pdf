@@ -1,7 +1,7 @@
 [![npm version](https://badge.fury.io/js/@lesjoursfr%2Fhtml-to-pdf.svg)](https://badge.fury.io/js/@lesjoursfr%2Fhtml-to-pdf)
-[![Build Status](https://travis-ci.org/lesjoursfr/html-to-pdf.svg?branch=master)](https://travis-ci.org/lesjoursfr/html-to-pdf)
+[![QC Checks](https://github.com/lesjoursfr/html-to-pdf/actions/workflows/quality-control.yml/badge.svg)](https://github.com/lesjoursfr/html-to-pdf/actions/workflows/quality-control.yml)
 
-# html-to-pdf
+# @lesjoursfr/html-to-pdf
 
 Generate PDF from HTML with simple API in Node.js.
 
