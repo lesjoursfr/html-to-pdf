@@ -53,11 +53,15 @@ app.on("ready", function () {
       // Print the Content to a Base64 PDF String
       window.webContents
         .printToPDF({
-          marginsType: 0,
-          pageSize: "A4",
           landscape: false,
           printBackground: false,
-          printSelectionOnly: false,
+          pageSize: "A4",
+          margins: {
+            top: 0.4,
+            bottom: 0.4,
+            left: 0.4,
+            right: 0.4,
+          },
         })
         .then(function (buffer) {
           pdfGenerationCallback(null, buffer);
