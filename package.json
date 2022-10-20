@@ -1,6 +1,6 @@
 {
 	"name": "@lesjoursfr/html-to-pdf",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "A library to generate PDF from HTML.",
 	"license": "MIT",
 	"repository": "lesjoursfr/html-to-pdf",
