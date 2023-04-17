@@ -37,7 +37,7 @@
 		"test": "ava"
 	},
 	"dependencies": {
-		"electron": "^23.2.3",
+		"electron": "^24.1.1",
 		"yargs": "^17.7.1"
 	},
 	"devDependencies": {
