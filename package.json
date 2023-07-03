@@ -42,12 +42,12 @@
 	},
 	"devDependencies": {
 		"@tsconfig/node18": "^18.2.0",
-		"@types/node": "^20.3.2",
+		"@types/node": "^20.3.3",
 		"@types/yargs": "^17.0.24",
 		"@typescript-eslint/eslint-plugin": "^5.60.1",
 		"@typescript-eslint/parser": "^5.60.1",
 		"ava": "^5.3.1",
-		"eslint": "^8.43.0",
+		"eslint": "^8.44.0",
 		"eslint-config-prettier": "^8.8.0",
 		"prettier": "^2.8.8",
 		"ts-node": "^10.9.1",
@@ -61,5 +61,5 @@
 			"ts-node/register"
 		]
 	},
-	"packageManager": "yarn@3.6.0"
+	"packageManager": "yarn@3.6.1"
 }
