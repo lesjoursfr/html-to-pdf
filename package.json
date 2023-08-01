@@ -37,18 +37,18 @@
 		"test": "ava"
 	},
 	"dependencies": {
-		"electron": "^25.2.0",
+		"electron": "^25.3.2",
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
 		"@tsconfig/node18": "^18.2.0",
-		"@types/node": "^20.4.1",
+		"@types/node": "^20.4.5",
 		"@types/yargs": "^17.0.24",
-		"@typescript-eslint/eslint-plugin": "^6.0.0",
-		"@typescript-eslint/parser": "^6.0.0",
+		"@typescript-eslint/eslint-plugin": "^6.2.0",
+		"@typescript-eslint/parser": "^6.2.0",
 		"ava": "^5.3.1",
-		"eslint": "^8.44.0",
-		"eslint-config-prettier": "^8.8.0",
+		"eslint": "^8.46.0",
+		"eslint-config-prettier": "^8.9.0",
 		"prettier": "^3.0.0",
 		"ts-node": "^10.9.1",
 		"typescript": "^5.1.6"
