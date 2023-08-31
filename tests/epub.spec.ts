@@ -1,4 +1,4 @@
-import test from "ava";
+import assert from "assert";
 import { resolve } from "path";
 import { URL } from "url";
 import { PDF } from "../src/index";
@@ -13,6 +13,6 @@ async function runTestOn(input: string): Promise<boolean> {
   return op.result === "ok";
 }
 
-test.serial("PDF > generate", async (t) => {
-  t.is(await runTestOn("article"), true);
-});
+it("PDF > generate", async () => {
+  assert.strictEqual(await runTestOn("article"), true);
+}).timeout(30000);
