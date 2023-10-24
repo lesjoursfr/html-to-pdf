@@ -37,7 +37,7 @@
 		"test": "mocha"
 	},
 	"dependencies": {
-		"electron": "^26.2.4",
+		"electron": "^27.0.2",
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
