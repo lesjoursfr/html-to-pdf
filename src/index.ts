@@ -6,7 +6,12 @@ import { promisify } from "util";
 const execp = promisify(exec);
 const script = resolve(__dirname, "./electron.js");
 
-interface OperationResult {
+export interface PDFOptions {
+  xvfb: boolean;
+  xvfbArgs: string | undefined;
+}
+
+export interface OperationResult {
   error: string | undefined;
   result: "ok" | undefined;
 }
@@ -27,18 +32,30 @@ function cleanOutput(std: string): OperationResult | null {
 export class PDF {
   url: URL;
   output: string;
+  options: PDFOptions;
 
-  constructor(url: URL, output: string) {
+  constructor(url: URL, output: string, options?: PDFOptions) {
     // Required options
     this.url = url;
     this.output = output;
+    this.options = options || { xvfb: false, xvfbArgs: undefined };
+  }
+
+  private command(): string {
+    if (this.options.xvfb) {
+      return `xvfb-run ${this.options.xvfbArgs || ""} node ${require.resolve(
+        "electron/cli.js"
+      )} --no-sandbox ${script} --target ${this.url.toString()} --output ${this.output}`;
+    }
+
+    return `node ${require.resolve(
+      "electron/cli.js"
+    )} --no-sandbox ${script} --target ${this.url.toString()} --output ${this.output}`;
   }
 
   async render(): Promise<OperationResult> {
     // Render the PDF
-    const command = `node ${require.resolve(
-      "electron/cli.js"
-    )} --no-sandbox ${script} --target ${this.url.toString()} --output ${this.output}`;
+    const command = this.command();
     const { stdout } = await execp(command);
 
     // Clean output
