@@ -22,7 +22,7 @@ function cleanOutput(std: string): OperationResult | null {
   for (const line of std.split("\n")) {
     try {
       result = JSON.parse(line);
-    } catch (err) {
+    } catch (_err) {
       /* Nothing to do */
     }
   }
