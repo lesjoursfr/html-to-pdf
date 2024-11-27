@@ -35,7 +35,7 @@ Then put this in your code:
 
 #### Parameters
 
--   `target`:
-    The URL of the HTML page
--   `output`:
-    The PDF file path
+- `target`:
+  The URL of the HTML page
+- `output`:
+  The PDF file path
