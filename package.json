@@ -37,14 +37,14 @@
 		"test": "mocha"
 	},
 	"dependencies": {
-		"electron": "^34.0.1",
+		"electron": "^34.0.2",
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.19.0",
 		"@tsconfig/node20": "^20.1.4",
 		"@types/mocha": "^10.0.10",
-		"@types/node": "^22.12.0",
+		"@types/node": "^22.13.0",
 		"@types/yargs": "^17.0.33",
 		"eslint": "^9.19.0",
 		"eslint-config-prettier": "^10.0.1",
