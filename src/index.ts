@@ -29,6 +29,32 @@ function cleanOutput(std: string): OperationResult | null {
   return result;
 }
 
+function isExecpError(err: unknown): err is Error & { stdout: string; stderr: string } {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return err instanceof Error && typeof (err as any).stdout === "string" && typeof (err as any).stderr === "string";
+}
+
+async function exitCodeSafeExec(command: string): Promise<string> {
+  // Execute the comand
+  let result: { stdout: string; stderr: string };
+  try {
+    result = await execp(command);
+  } catch (execpErr) {
+    // Restore the result if there is an error
+    if (isExecpError(execpErr)) {
+      result = { stdout: execpErr.stdout, stderr: execpErr.stderr };
+    } else {
+      result = { stdout: "", stderr: execpErr instanceof Error ? execpErr.message : "Missing error message" };
+    }
+  }
+
+  if (result.stdout !== "") {
+    return result.stdout;
+  }
+
+  throw new Error(`Operation failed [command : ${command}]\n${result.stderr}`);
+}
+
 export class PDF {
   url: URL;
   output: string;
@@ -56,7 +82,7 @@ export class PDF {
   async render(): Promise<OperationResult> {
     // Render the PDF
     const command = this.command();
-    const { stdout } = await execp(command);
+    const stdout = await exitCodeSafeExec(command);
 
     // Clean output
     const opResult = cleanOutput(stdout);
