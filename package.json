@@ -37,14 +37,14 @@
 		"test": "mocha"
 	},
 	"dependencies": {
-		"electron": "^36.3.2",
+		"electron": "^36.4.0",
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.28.0",
 		"@tsconfig/node20": "^20.1.5",
 		"@types/mocha": "^10.0.10",
-		"@types/node": "^22.15.29",
+		"@types/node": "^22.15.30",
 		"@types/yargs": "^17.0.33",
 		"eslint": "^9.28.0",
 		"eslint-config-prettier": "^10.1.5",
@@ -53,7 +53,7 @@
 		"prettier": "^3.5.3",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.33.0"
+		"typescript-eslint": "^8.33.1"
 	},
-	"packageManager": "yarn@4.9.1"
+	"packageManager": "yarn@4.9.2"
 }
