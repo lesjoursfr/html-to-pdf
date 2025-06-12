@@ -1,9 +1,10 @@
 const { app, BrowserWindow } = require("electron");
 const { writeFileSync } = require("fs");
-const { string: yargs } = require("yargs");
+const yargs = require("yargs");
+const { hideBin } = require("yargs/helpers");
 
 // Arguments
-const { target, output } = yargs(["target", "output"]).argv;
+const { target, output } = yargs(hideBin(process.argv)).string(["target", "output"]).parse();
 
 // Wait until Electron is Ready
 app.on("ready", function () {
