@@ -4,7 +4,9 @@ const yargs = require("yargs");
 const { hideBin } = require("yargs/helpers");
 
 // Arguments
-const { target, output } = yargs(hideBin(process.argv)).string(["target", "output"]).parse();
+const { target, output, printBackground } = yargs(hideBin(process.argv))
+  .string(["target", "output", "printBackground"])
+  .parse();
 
 // Wait until Electron is Ready
 app.on("ready", function () {
@@ -55,7 +57,7 @@ app.on("ready", function () {
       window.webContents
         .printToPDF({
           landscape: false,
-          printBackground: false,
+          printBackground: printBackground === "true",
           pageSize: "A4",
           margins: {
             top: 0.4,

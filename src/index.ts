@@ -7,8 +7,9 @@ const execp = promisify(exec);
 const script = resolve(__dirname, "./electron.js");
 
 export interface PDFOptions {
-  xvfb: boolean;
-  xvfbArgs: string | undefined;
+  xvfb?: boolean;
+  xvfbArgs?: string;
+  printBackground?: boolean;
 }
 
 export interface OperationResult {
@@ -64,19 +65,21 @@ export class PDF {
     // Required options
     this.url = url;
     this.output = output;
-    this.options = options || { xvfb: false, xvfbArgs: undefined };
+    this.options = options || {};
   }
 
   private command(): string {
     if (this.options.xvfb) {
       return `xvfb-run ${this.options.xvfbArgs || ""} node ${require.resolve(
         "electron/cli.js"
-      )} --no-sandbox ${script} --target ${this.url.toString()} --output ${this.output}`;
+      )} --no-sandbox ${script} ${this.commandArgs()}`;
     }
 
-    return `node ${require.resolve(
-      "electron/cli.js"
-    )} --no-sandbox ${script} --target ${this.url.toString()} --output ${this.output}`;
+    return `node ${require.resolve("electron/cli.js")} --no-sandbox ${script} ${this.commandArgs()}`;
+  }
+
+  private commandArgs(): string {
+    return `--target ${this.url.toString()} --output ${this.output} --printBackground ${this.options.printBackground ? "true" : "false"}`;
   }
 
   async render(): Promise<OperationResult> {
