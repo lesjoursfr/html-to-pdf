@@ -70,9 +70,7 @@ export class PDF {
 
   private command(): string {
     if (this.options.xvfb) {
-      return `xvfb-run ${this.options.xvfbArgs || ""} node ${require.resolve(
-        "electron/cli.js"
-      )} --no-sandbox ${script} ${this.commandArgs()}`;
+      return `xvfb-run ${this.options.xvfbArgs || ""} node ${require.resolve("electron/cli.js")} --no-sandbox ${script} ${this.commandArgs()}`;
     }
 
     return `node ${require.resolve("electron/cli.js")} --no-sandbox ${script} ${this.commandArgs()}`;
