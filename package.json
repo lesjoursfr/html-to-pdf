@@ -3,7 +3,10 @@
 	"version": "4.0.5",
 	"description": "A library to generate PDF from HTML.",
 	"license": "MIT",
-	"repository": "lesjoursfr/html-to-pdf",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lesjoursfr/html-to-pdf.git"
+	},
 	"homepage": "https://github.com/lesjoursfr/html-to-pdf#readme",
 	"bugs": {
 		"url": "https://github.com/lesjoursfr/html-to-pdf/issues"
@@ -21,11 +24,6 @@
 	],
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
-	"files": [
-		"lib/**/*",
-		"src/**/*",
-		"templates/**/*"
-	],
 	"scripts": {
 		"freshlock": "rm -rf node_modules/ && rm .yarn/install-state.gz && rm yarn.lock && yarn",
 		"check-lint": "eslint",

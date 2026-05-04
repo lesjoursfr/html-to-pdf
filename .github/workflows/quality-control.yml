@@ -66,4 +66,4 @@ jobs:
           yarn install
 
       - name: Run tests
-        run: xvfb-run --auto-servernum -- npx mocha
+        run: xvfb-run --auto-servernum -- npm run test
