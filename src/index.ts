@@ -57,9 +57,9 @@ async function exitCodeSafeExec(command: string): Promise<string> {
 }
 
 export class PDF {
-  url: URL;
-  output: string;
-  options: PDFOptions;
+  readonly url: URL;
+  readonly output: string;
+  readonly options: PDFOptions;
 
   constructor(url: URL, output: string, options?: PDFOptions) {
     // Required options
